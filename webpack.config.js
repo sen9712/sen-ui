@@ -1,10 +1,11 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-  mode: 'production',
   entry: { //入口文件
     SUI: './lib/index.tsx'
   },
+  resolve: {
+  extensions: ['.ts', '.tsx', '.js', '.jsx'],
+},
   output: {
     path: path.resolve(__dirname, 'dist/lib'),//__dirname 表示当前目录，由于不同操作系统的原因，'\','/'可能会混，所以我们需要用到resolve替我们来判断
     library: 'SUI',
@@ -17,10 +18,5 @@ module.exports = {
         loader: 'awesome-typescript-loader'
       }
     ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'index.html'
-    })
-  ]
+  }
 }
